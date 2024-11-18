@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Correo Electrónico de Restablecimiento de Contraseña{% endblock %}
+
+{% block body %}
+<div class="container-fluid p-0 m-0 bg-image d-flex flex-column justify-content-center align-items-center min-vh-100">
+<img src="{{ asset('images/logo-seo.svg') }}" alt="Logo" class="logo">
+    <p class="my-style">
+        Si existe una cuenta asociada a tu correo electrónico, acabamos de enviar un correo electrónico que contiene un enlace que puedes usar para restablecer tu contraseña.
+        Este enlace caducará en {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+    </p>
+    <p class="my-style">Si no recibes un correo electrónico, por favor verifica tu carpeta de correo no deseado o <a href="{{ path('app_forgot_password_request') }}">inténtalo nuevamente</a>.</p>
+</div>
+{% endblock %}

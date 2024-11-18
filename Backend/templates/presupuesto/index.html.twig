@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Presupuesto index{% endblock %}
+
+{% block body %}
+<div class="container my-3">
+    <h1>Presupuesto</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ingresos</th>
+                <th>Gastos</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for presupuesto in presupuestos %}
+            <tr>
+                <td>{{ presupuesto.id }}</td>
+                <td>{{ presupuesto.ingresos }}</td>
+                <td>{{ presupuesto.gastos }}</td>
+                <td>
+                    <a href="{{ path('app_presupuesto_show', {'id': presupuesto.id}) }}">mostrar |</a>
+                    <a href="{{ path('app_presupuesto_edit', {'id': presupuesto.id}) }}">editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_presupuesto_new') }}">Añadir datos</a><br>
+    <a class="btn btn-success btn-lg mt-4" href="{{ path('app_client_home') }}">Volver al panel</a>
+    </div>
+{% endblock %}

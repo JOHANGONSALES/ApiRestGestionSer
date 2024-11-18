@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ClientHomeController!{% endblock %}
+{% block head %}
+    {{ parent() }}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/stylehome.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            .custom-container {
+                text-align: left;
+                margin-top: 20px;
+            }
+        </style>
+    {% endblock %}
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid d-flex justify-content-center bg-image" style="min-height: 100vh;">
+        <div class="custom-container">
+        <div class="d-flex">
+            <img src="{{ asset('images/logo-seo.svg') }}" alt="Logo" class="logo align-self-start" style="width: 150px;">
+
+        </div>
+            <h1 class="mt-4">Bienvenido a tu Api</h1>
+            <p class="font-italic">Aquí podrás insertar nueva información:</p>
+            <ul class="list-unstyled">
+                <li class="mb-3">
+                    *Año:
+                    <a href="{{ path('app_years_index') }}" class="btn btn-primary">Insertar</a>
+                </li>
+
+                <li class="mb-3">
+                    *Nº de voluntarios:
+                    <a href="{{ path('app_voluntarios_index') }}" class="btn btn-primary">Insertar</a>
+                </li>
+
+                <li class="mb-3">
+                    *Nº de socios:
+                    <a href="{{ path('app_socios_index') }}" class="btn btn-primary">Insertar</a>
+                </li>
+
+                <li class="mb-3">
+                    *Presupuesto (ingresos y gastos):
+                    <a href="{{ path('app_presupuesto_index') }}" class="btn btn-primary">Insertar</a>
+                </li>
+
+                <li class="mb-3">
+                    *Nº de seguidores:
+                    <a href="{{ path('app_seguidores_rrss_index') }}" class="btn btn-primary">Insertar</a>
+                </li>
+            </ul>
+            <a class="btn btn-success btn-lg mt-4" href="{{ path('app_home') }}">Volver al Inicio</a>
+        </div>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}

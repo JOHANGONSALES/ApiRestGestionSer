@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Iniciar sesión{% endblock %}
+{% block head %}
+    {{ parent() }}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/stylehome.css') }}">
+    {% endblock %}
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid p-0 m-0 bg-image d-flex flex-column justify-content-center align-items-center min-vh-100">
+    
+        <div class="col-md-6">
+            <form method="post" class="text-center mx-auto">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        Bienvenido {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">cerrar sesión</a>
+                    </div>
+                {% endif %}
+
+                <h1 class="text-center mb-3">Iniciar sesión</h1>
+
+                <div class="form-group mx-auto">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control form-control-sm" autocomplete="email" required autofocus>
+                </div>
+
+                <div class="form-group mx-auto">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control form-control-sm" autocomplete="current-password" required>
+                </div>
+
+                <input type="hidden" name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}"
+                >
+
+                <button class="btn btn-lg btn-primary btn-block same-size-button mt-4 mx-auto" type="submit">
+                    Enviar
+                </button>
+                <a href="{{ path('app_forgot_password_request') }}" class="text-dark">Recuperar Contraseña</a>
+           <br>
+            </form>
+           
+
+            <a class="btn btn-success btn-lg mt-4" href="{{ path('app_home') }}">Volver al Inicio</a>
+        </div>
+     
+</div>
+{% endblock %}

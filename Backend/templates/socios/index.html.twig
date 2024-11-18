@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Socios{% endblock %}
+
+{% block body %}
+<div class="container my-3">
+    <h1>Socios</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Cantidad</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for socio in socios %}
+            <tr>
+                <td>{{ socio.id }}</td>
+                <td>{{ socio.cantidad }}</td>
+                <td>
+                    <a href="{{ path('app_socios_show', {'id': socio.id}) }}">mostrar |</a>
+                    <a href="{{ path('app_socios_edit', {'id': socio.id}) }}">editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_socios_new') }}">Añadir datos</a><br>
+    <a class="btn btn-success btn-lg mt-4" href="{{ path('app_client_home') }}">Volver al panel</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registrarse{% endblock %}
+{% block head %}
+    {{ parent() }}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/stylehome.css') }}">
+    {% endblock %}
+{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid p-0 m-0 bg-image d-flex flex-column justify-content-center align-items-center min-vh-100">   
+        <div class="col-md-6">
+            {% for flash_error in app.flashes('verify_email_error') %}
+                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+            {% endfor %}
+
+            <h1 class="text-center">Registrarse</h1>
+
+            {{ form_errors(registrationForm) }}
+
+            {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.email, {
+                    'attr': {'class': 'form-control mb-3'}
+                }) }}
+                {{ form_row(registrationForm.plainPassword, {
+                    'label': 'Password',
+                    'attr': {'class': 'form-control mb-3'}
+                }) }}
+                {{ form_row(registrationForm.agreeTerms) }}
+
+                <button type="submit" class="btn btn-primary btn-block mt-3">Enviar</button>
+                <a class="btn btn-success btn-lg mt-4" href="{{ path('app_home') }}">Volver al Inicio</a>
+            {{ form_end(registrationForm) }}
+        </div>  
+</div>
+{% endblock %}
